@@ -63,6 +63,11 @@ namespace PubsPractice.Database
             _dbcontext.Titles.Remove(data);
             _dbcontext.SaveChanges();
         }
+        public void DeleteTitle(Title title)
+        {
+            _dbcontext.Titles.Remove(title);
+            _dbcontext.SaveChanges();
+        }
 
         public void DeleteTitle(List<Title> titles)
         {

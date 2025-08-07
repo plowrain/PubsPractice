@@ -18,6 +18,7 @@ namespace PubsPractice.Database
         void UpdateTitle(List<Title> titles);
 
         void DeleteTitle(string id);
+        void DeleteTitle(Title title);
         void DeleteTitle(List<Title> titles);
 
 

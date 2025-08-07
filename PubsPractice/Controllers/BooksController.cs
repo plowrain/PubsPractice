@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PubsPractice.Database;
+using PubsPractice.Models;
+using PubsPractice.ServiceLayer.BooksService;
 
 namespace PubsPractice.Controllers
 {
@@ -7,12 +9,15 @@ namespace PubsPractice.Controllers
     {
         private readonly ILogger<BooksController> _logger;
         private readonly IPubsAccess _pubsAccess;
+        private readonly IBookService _bookService;
 
         public BooksController(ILogger<BooksController> logger,
-                              IPubsAccess pubsAccess)
+                              IPubsAccess pubsAccess,
+                              IBookService bookService)
         {
             _logger = logger;
             _pubsAccess = pubsAccess;
+            _bookService = bookService;
         }
 
         [HttpGet]
@@ -67,7 +72,8 @@ namespace PubsPractice.Controllers
         {
             try
             {
-                _pubsAccess.DeleteTitle(id);
+                _bookService.DeleteBook(id);
+                
                 return Ok();
             }
             catch (Exception ex)
@@ -78,11 +84,27 @@ namespace PubsPractice.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string id)
+        public IActionResult Create(string titleId, string title1, string type,
+                string pubId, decimal? price, decimal? advance, int? royalty,
+                int? ytdSales, string notes, DateTime pubdate)
         {
+            var _title = new Title()
+            {
+                TitleId = titleId,
+                Title1 = title1,
+                Type = type,
+                PubId = pubId,
+                Price = price,
+                Advance = advance,
+                Royalty = royalty,
+                YtdSales = ytdSales,
+                Notes = notes,
+                Pubdate = pubdate
+            };
+
             try
             {
-                //_pubsAccess.CreateTitle(id);
+                _bookService.CreateBook(_title);
                 return Ok();
             }
             catch (Exception ex)
@@ -93,11 +115,27 @@ namespace PubsPractice.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(string id)
+        public IActionResult Update(string titleId, string title1, string type,
+                string pubId, decimal? price, decimal? advance, int? royalty,
+                int? ytdSales, string notes, DateTime pubdate)
         {
+            var _title = new Title()
+            {
+                TitleId = titleId,
+                Title1 = title1,
+                Type = type,
+                PubId = pubId,
+                Price = price,
+                Advance = advance,
+                Royalty = royalty,
+                YtdSales = ytdSales,
+                Notes = notes,
+                Pubdate = pubdate
+            };
+
             try
             {
-                //_pubsAccess.UpdateTitle(id);
+                _bookService.UpdateBook(_title);
                 return Ok();
             }
             catch (Exception ex)

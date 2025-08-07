@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PubsPractice.Database;
 using PubsPractice.Models;
-
+using PubsPractice.ServiceLayer.BooksService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,7 @@ builder.Services.AddDbContext<PubsContext>(options =>
 
 // DIµù¥U
 builder.Services.AddScoped<IPubsAccess, PubsAccess>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 

@@ -18,17 +18,93 @@ namespace PubsPractice.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var data = _pubsAccess.GetBook();
-            return Json(data);
+            try
+            {
+                var data = _pubsAccess.GetBook();
+                if (data.Count() != 0)
+                {
+                    return Json(data);
+
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
         public IActionResult Index(string id)
         {
-            var data = _pubsAccess.GetBook(id);
-            return Json(data);
+            try
+            {
+                var data = _pubsAccess.GetBook(id);
+                if (data != null)
+                {
+                    return Json(data);
+
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return BadRequest(ex.Message);
+            }
+
         }
 
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                _pubsAccess.DeleteTitle(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return BadRequest(ex.Message);
+            }
+        }
 
+        [HttpPost]
+        public IActionResult Create(string id)
+        {
+            try
+            {
+                //_pubsAccess.CreateTitle(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Update(string id)
+        {
+            try
+            {
+                //_pubsAccess.UpdateTitle(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

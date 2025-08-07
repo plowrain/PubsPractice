@@ -18,9 +18,17 @@ namespace PubsPractice.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            _pubsAccess.GetTestDatabase();
-            return View();
+            var data = _pubsAccess.GetBook();
+            return Json(data);
         }
+
+        [HttpGet]
+        public IActionResult Index(string id)
+        {
+            var data = _pubsAccess.GetBook(id);
+            return Json(data);
+        }
+
 
     }
 }

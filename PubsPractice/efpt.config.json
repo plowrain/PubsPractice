@@ -1,10 +1,10 @@
 ﻿{
    "CodeGenerationMode": 2,
-   "ContextClassName": "pubsContext",
+   "ContextClassName": "PubsContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
-   "IncludeConnectionString": false,
+   "IncludeConnectionString": true,
    "ModelNamespace": null,
    "OutputContextPath": null,
    "OutputPath": "Models",
@@ -64,7 +64,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "desktop-9pm7gpu\\sqlexpress.pubs.dbo",
+   "UiHint": "desktop-9pm7gpu\\sqlexpress.pubs.dbo1",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,

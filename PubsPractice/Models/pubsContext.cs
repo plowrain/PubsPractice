@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PubsPractice.Models
 {
-    public partial class pubsContext : DbContext
+    public partial class PubsContext : DbContext
     {
-        public pubsContext()
+        public PubsContext()
         {
         }
 
-        public pubsContext(DbContextOptions<pubsContext> options)
+        public PubsContext(DbContextOptions<PubsContext> options)
             : base(options)
         {
         }
@@ -30,6 +30,15 @@ namespace PubsPractice.Models
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Titleauthor> Titleauthors { get; set; }
         public virtual DbSet<Titleview> Titleviews { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=pubs;User ID=Plow;Password=12345678");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

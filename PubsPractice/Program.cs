@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PubsPractice.Database;
 using PubsPractice.Models;
 
 
@@ -7,9 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<pubsContext>(options =>
+// ¸ê®Æ®wµù¥U
+builder.Services.AddDbContext<PubsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PubsDatabase")));
 
+// DIµù¥U
+builder.Services.AddScoped<IPubsAccess, PubsAccess>();
 
 var app = builder.Build();
 

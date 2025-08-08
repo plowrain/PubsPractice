@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using PubsPractice.ViewModel;
 
 namespace PubsPractice.Database
 {
@@ -34,6 +35,19 @@ namespace PubsPractice.Database
                         select books
                         ).ToList();
 
+            return data;
+        }
+        public List<BooksViewModel> GetBooksViewModels()
+        {
+            var data = (from book in _dbcontext.Titles
+                        join titleAu in _dbcontext.Titleauthors on book.TitleId equals titleAu.TitleId
+                        join authors in _dbcontext.Authors on titleAu.AuId equals authors.AuId
+                        select new BooksViewModel
+                        {
+                            AuName = authors.AuFname + authors.AuLname,
+                            BookName = book.Title1,
+                            Price = Convert.ToDouble( book.Price),
+                        }).ToList(); ;
             return data;
         }
 

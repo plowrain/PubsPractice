@@ -19,8 +19,11 @@ namespace PubsPractice.Controllers
 
         public IActionResult Index()
         {
-            _pubsAccess.GetTestDatabase();
-            return View();
+            //_pubsAccess.GetTestDatabase();
+            var data = _pubsAccess.GetBook();
+            // 使用 Guid.NewGuid() 進行隨機排序，並取前三筆
+            var randomBooks = data.OrderBy(b => Guid.NewGuid()).Take(3).ToList(); 
+            return View(randomBooks);
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PubsPractice.Models.Title>
+﻿@model IEnumerable<PubsPractice.ViewModel.BooksViewModel>
 
 @{
     ViewData["Title"] = "書籍列表";
@@ -13,12 +13,12 @@
         {
             <div class="col">
                 <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="@book.TitleId">
+                    
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@book.Title1</h5>
-                        <p class="card-text">作者: @book.TitleId</p>
+                        <h5 class="card-title">書名:@book.BookName</h5>
+                        <p class="card-text">作者: @book.AuName</p>
                         <p class="card-text">價格: $@book.Price</p>
-                        <a href="@Url.Action("Details", new { id = book.PubId })" class="btn btn-primary mt-auto">查看詳情</a>
+                        <a href="#" class="btn btn-primary mt-auto">查看詳情</a>
                     </div>
                 </div>
             </div>

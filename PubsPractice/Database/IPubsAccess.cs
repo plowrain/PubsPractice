@@ -1,4 +1,5 @@
 ﻿using PubsPractice.Models;
+using PubsPractice.ViewModel;
 
 namespace PubsPractice.Database
 {
@@ -15,6 +16,7 @@ namespace PubsPractice.Database
         /// <returns></returns>
         List<Title> GetSpecialBook(string storyName, string bookName);
 
+        List<BooksViewModel> GetBooksViewModels();
         List<Title> GetBook();
         Title GetBook(string id);
 

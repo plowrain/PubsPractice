@@ -23,7 +23,7 @@ namespace PubsPractice.Controllers
         public IActionResult List()
         {
             // 從資料庫取得所有書籍
-            var books = _pubsAccess.GetBook();
+            var books = _pubsAccess.GetBooksViewModels();
             return View(books);
         }
 

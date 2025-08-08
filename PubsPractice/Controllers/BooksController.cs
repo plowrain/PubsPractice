@@ -20,6 +20,20 @@ namespace PubsPractice.Controllers
             _bookService = bookService;
         }
 
+        public IActionResult List()
+        {
+            // 從資料庫取得所有書籍
+            var books = _pubsAccess.GetBook();
+            return View(books);
+        }
+
+        public IActionResult Details(int id)
+        {
+            // 從資料庫取得單一書籍
+            
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Index()
         {

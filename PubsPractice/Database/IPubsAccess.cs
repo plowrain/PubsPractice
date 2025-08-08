@@ -8,6 +8,13 @@ namespace PubsPractice.Database
         List<Employee> GetTestDatabase();
 
         #region Title 書局
+        /// <summary>
+        /// 搜尋書局
+        /// </summary>
+        /// <param name="storyName"></param>
+        /// <returns></returns>
+        List<Title> GetSpecialBook(string storyName, string bookName);
+
         List<Title> GetBook();
         Title GetBook(string id);
 

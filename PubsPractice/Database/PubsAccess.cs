@@ -1,4 +1,8 @@
 ﻿using PubsPractice.Models;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PubsPractice.Database
 {
@@ -17,8 +21,22 @@ namespace PubsPractice.Database
 
             return data;
         }
+
         #region books
         
+        public List<Title> GetSpecialBook(string storyName, string bookName)
+        {
+            //篩選這本書在哪些書局有上限
+            var data = (from books in _dbcontext.Titles
+                        join sales in _dbcontext.Sales on books.TitleId equals sales.TitleId
+                        join story in _dbcontext.Stores on sales.StorId equals story.StorId
+                        where story.StorName == storyName && books.Title1 == bookName
+                        select books
+                        ).ToList();
+
+            return data;
+        }
+
         public List<Title> GetBook()
         {
             var data = _dbcontext.Titles.ToList();

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PubsPractice.Models.Title>
+
+@{
+    ViewData["Title"] = "書籍列表";
+}
+
+<h1 class="my-4">所有書籍</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @if (Model != null)
+    {
+        @foreach (var book in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="@book.TitleId">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@book.Title1</h5>
+                        <p class="card-text">作者: @book.TitleId</p>
+                        <p class="card-text">價格: $@book.Price</p>
+                        <a href="@Url.Action("Details", new { id = book.PubId })" class="btn btn-primary mt-auto">查看詳情</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-muted">目前沒有書籍。</p>
+    }
+</div>
